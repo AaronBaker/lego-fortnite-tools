@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Village Resource Calculator</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Font - Bangers for a fun feel -->
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+    <!-- Custom CSS for Fortnite look -->
+    <style>
+        body {
+            background-color: #2c003e;
+            /* Dark purple background */
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+        }
+
+        input[type=checkbox] {
+            margin-right: 10px;
+        }
+
+        .container {
+            padding-top: 30px;
+        }
+
+        .calculator-card {
+            background-color: #6a1b9a;
+            /* Rich purple */
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-family: 'Bangers', cursive;
+            /* Fun, bold font */
+            color: #fce303;
+            /* Bright yellow for contrast */
+            text-align: center;
+        }
+
+        h2 {
+            font-weight: bold;
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        h3 {
+            font-weight: bold;
+            font-size: 18px;
+            margin-top: 10px;
+            color: #fce303;
+            text-shadow: #00000087 2px 2px;
+        }
+
+        a {
+            color:#fce303;
+        }
+
+        h3.grass {
+            color:#55ff00
+        }
+
+        h3.sand {
+            color:#fce303;
+        }
+
+        h3.frost {
+            color:#00eaff;
+        }
+
+        h3.stat {
+            color:#ffa800;
+            /* text-shadow:#000 1px 1px; */
+        }
+
+        .btn-calculate {
+            background-color: #4CAF50;
+            /* Bright green for better visibility */
+            color: white;
+            border: none;
+        }
+
+        .btn-calculate:hover {
+            background-color: #388E3C;
+            /* Darker green on hover */
+        }
+
+        .resource-list {
+            margin-top: 20px;
+        }
+
+        .resource-item {
+            background-color: #4a148c;
+            /* Deeper purple shade for items */
+            border-left: 5px solid #9c27b0;
+            /* Brighter purple accent */
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .form-control {
+            background-color: #4527a0;
+            /* Darker purple for dropdown */
+            color: white;
+            border: 1px solid #4527a0;
+        }
+
+        .top-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .sub {
+            vertical-align: sub;
+        }
+
+        .checkSection {
+            background-color: #9c27b0;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 15px;
+
+        }
+
+        .grassy-head {
+            margin-bottom: 0px;
+            line-height: 4px;
+            margin-top: 20px;
+        }
+
+        .grassy-sub {
+            font-size: 11px;
+        }
+
+        .reg-head {
+            margin-bottom: 16px;
+        }
+
+
+        .result-column {
+            padding: 10px;
+            /* Adjust padding as needed */
+            /* margin: 10px; */
+            /* Adjust margin as needed */
+        }
+
+        .columnContent {
+            margin: 10px;
+            padding: 10px;
+            background-color: #9c27b0;
+            border-radius: 15px;
+        }
+
+        .copyright {
+            text-align: right;
+            font-size:14px;
+        }
+    </style>
+
+    <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script>
+
+    <script defer src="./firebase.config.js"></script>
+    <script defer src="./init.firebase.js"></script>
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <div class="container">
+        <div class="calculator-card">
+            <div class="top-header">
+
+                <img id="logo" src="img/lego-fortnite-logo.png" width=200>
+                <h1>Village Resource Calculator</h1>
+                <h2>Select what you want to build. The total resources will appear below.</h2>
+            </div>
+
+            <div class="row" id="checkboxes">
+
+                <div class="col-md-3 stationsSection">
+                    <div class="checkSection">
+                        <h3 class="stat">Stations</h3>
+                        <p id="stationsContainer"> </p>
+                    </div>
+
+
+                </div>
+                <div class="col-md-9">
+
+                    <div class="checkSection row">
+
+                        <div class="col-md-4">
+                            <h3 class="grassy-head grass">Grasslands* Village</h3>
+                            <span class="grassy-sub">Includes Shore Biome</span>
+                            <p id="grasslandsVillageContainer"></p>
+                        </div>
+                        <div class="col-md-4">
+                            <h3 class="reg-head sand">Dry Valley Village</h3>
+
+                            <p id="dryvalleyVillageContainer"></p>
+                        </div>
+                        <div class="col-md-4">
+                            <h3 class="reg-head frost">Frostlands Village</h3>
+
+                            <p id="frostlandsVillageContainer"></p>
+                        </div>
+
+                    </div>
+
+
+
+
+                </div>
+            </div>
+
+
+
+
+            <h1>RESULTS</h1>
+            <div class="row" id="result">
+
+
+
+
+
+            </div>
+            <div class="copyright">&#169;2024 Aaron Baker. Created by <a href="https://aaronbaker.omg.lol">Aaron</a></div>
+        </div>
+        
+    </div>
+    
+
+    <script src="script.js"></script> <!-- Link to your JavaScript file -->
+</body>
+
+</html>
