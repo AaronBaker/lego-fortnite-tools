@@ -47,7 +47,7 @@
             margin-top: 10px;
         }
 
-        h3 {
+        h3, .header-label {
             font-weight: bold;
             font-size: 18px;
             margin-top: 10px;
@@ -56,23 +56,23 @@
         }
 
         a {
-            color:#fce303;
+            color: #fce303;
         }
 
-        h3.grass {
-            color:#55ff00
+        .header-label.grass {
+            color: #55ff00
         }
 
-        h3.sand {
-            color:#fce303;
+        .header-label.sand {
+            color: #fce303;
         }
 
-        h3.frost {
-            color:#00eaff;
+        .header-label.frost {
+            color: #00eaff;
         }
 
-        h3.stat {
-            color:#ffa800;
+        .header-label.stat {
+            color: #ffa800;
             /* text-shadow:#000 1px 1px; */
         }
 
@@ -129,11 +129,18 @@
         .grassy-head {
             margin-bottom: 0px;
             line-height: 4px;
-            margin-top: 20px;
+            margin-top: 17px;
         }
 
         .grassy-sub {
             font-size: 11px;
+            top: -8px;
+            position: relative;
+        }
+
+        #grasslandsVillageContainer {
+            position:relative;
+            top:-8px;
         }
 
         .reg-head {
@@ -157,7 +164,7 @@
 
         .copyright {
             text-align: right;
-            font-size:14px;
+            font-size: 14px;
         }
     </style>
 
@@ -185,7 +192,7 @@
 
                 <div class="col-md-3 stationsSection">
                     <div class="checkSection">
-                        <h3 class="stat">Stations</h3>
+                        <label class="header-label stat reg-head"><input data-group="stations" type="checkbox">Stations</label>
                         <p id="stationsContainer"> </p>
                     </div>
 
@@ -196,25 +203,25 @@
                     <div class="checkSection row">
 
                         <div class="col-md-4">
-                            <h3 class="grassy-head grass">Grasslands* Village</h3>
-                            <span class="grassy-sub">Includes Shore Biome</span>
+                            <label class="header-label grassy-head grass"><input data-group="grasslandsVillage"
+                                    type="checkbox">Grasslands* Village</label>
+                            <span class="grassy-sub">*Includes Shore Biome</span>
                             <p id="grasslandsVillageContainer"></p>
                         </div>
                         <div class="col-md-4">
-                            <h3 class="reg-head sand">Dry Valley Village</h3>
+                            <label class="header-label reg-head sand"><input data-group="dryvalleyVillage"
+                                    type="checkbox">Dry Valley Village</label>
 
                             <p id="dryvalleyVillageContainer"></p>
                         </div>
                         <div class="col-md-4">
-                            <h3 class="reg-head frost">Frostlands Village</h3>
+                            <label class="header-label reg-head frost"><input data-group="frostlandsVillage"
+                                    type="checkbox">Frostlands Village</label>
 
                             <p id="frostlandsVillageContainer"></p>
                         </div>
 
                     </div>
-
-
-
 
                 </div>
             </div>
@@ -230,13 +237,14 @@
 
 
             </div>
-            <div class="copyright">&#169;2024 Aaron Baker. Created by <a href="https://aaronbaker.omg.lol">Aaron</a></div>
+            <div class="copyright">&#169;2024 Aaron Baker. Created by <a href="https://aaronbaker.omg.lol">Aaron</a>
+            </div>
         </div>
-        
-    </div>
-    
 
-    <script src="script.js"></script> <!-- Link to your JavaScript file -->
+    </div>
+
+    <script src="resource-list.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>
